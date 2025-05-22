@@ -1,9 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /mglsi_news/
-    
-    # Redirige toutes les requêtes vers index.php sauf pour les fichiers existants
+
+    # Ne pas rediriger si le fichier ou dossier existe
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php [L]
+
+    # Rediriger index.php vers /
+    RewriteRule ^index\.php$ / [R=301,L]
+
+    # Rediriger toutes les autres requêtes vers index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>

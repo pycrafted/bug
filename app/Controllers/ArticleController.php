@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../models/Article.php';
 require_once __DIR__ . '/../models/Category.php';
-require_once __DIR__ . '/../utils/functions.php';
+require_once __DIR__ . '/../../utils/functions.php';
 
-class ArticleController {
+class ArticleController extends Controller {
     private $articleModel;
     private $categoryModel;
 
@@ -24,7 +25,14 @@ class ArticleController {
         $totalArticles = $this->articleModel->getTotalArticles($selectedCategory);
         $totalPages = ceil($totalArticles / $perPage);
 
-        require_once __DIR__ . '/../views/index.view.php';
+        $this->render('index', [
+            'categories' => $categories,
+            'featured' => $featured,
+            'articles' => $articles,
+            'page' => $page,
+            'totalPages' => $totalPages,
+            'selectedCategory' => $selectedCategory
+        ]);
     }
 
     public function show() {
@@ -41,6 +49,8 @@ class ArticleController {
             die('Article non trouvé');
         }
 
-        require_once __DIR__ . '/../views/article.view.php';
+        $this->render('article', [
+            'article' => $article
+        ]);
     }
 }
