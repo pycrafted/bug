@@ -1,15 +1,16 @@
 <?php
 require_once __DIR__ . '/../config/db_connect.php';
 require_once __DIR__ . '/../utils/functions.php';
+require_once __DIR__ . '/../models/Category.php';
 
-$pdo = getDatabaseConnection();
-$categories = getAllCategories($pdo);
+$categoryModel = new Category();
+$categories = $categoryModel->getAllCategories();
 ?>
 
 <header class="site-header">
     <div class="header-main">
         <div class="logo">
-            <a href="/mglsi_news/index.php">
+            <a href="../index.php">
                 <h1>MGLSI News</h1>
             </a>
         </div>
@@ -19,18 +20,18 @@ $categories = getAllCategories($pdo);
                 <div class="user-menu">
                     <span class="user-greeting">Bienvenue, <?php echo safeHtml($_SESSION['user_name']); ?></span>
                     <div class="user-actions">
-                        <a href="/mglsi_news/admin/dashboard.php" class="btn btn-primary">
+                        <a href="../admin/dashboard.php" class="btn btn-primary">
                             <i class="fas fa-tachometer-alt"></i>
                             <span>Tableau de bord</span>
                         </a>
-                        <a href="/mglsi_news/logout.php" class="btn btn-danger">
+                        <a href="../logout.php" class="btn btn-danger">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Déconnexion</span>
                         </a>
                     </div>
                 </div>
             <?php else: ?>
-                <a href="/mglsi_news/login.php" class="btn btn-primary">
+                <a href="../login.php" class="btn btn-primary">
                     <i class="fas fa-user"></i>
                     <span>Connexion Journaliste</span>
                 </a>
@@ -40,12 +41,12 @@ $categories = getAllCategories($pdo);
 
     <nav class="main-nav">
         <ul>
-            <li><a href="/mglsi_news/index.php" class="nav-item active">
+            <li><a href="../index.php" class="nav-item active">
                 <i class="fas fa-home"></i>
                 <span>Accueil</span>
             </a></li>
             <?php foreach ($categories as $cat): ?>
-                <li><a href="/mglsi_news/index.php?category=<?php echo $cat['id']; ?>" class="nav-item">
+                <li><a href="../index.php?category=<?php echo $cat['id']; ?>" class="nav-item">
                     <span><?php echo safeHtml($cat['libelle']); ?></span>
                 </a></li>
             <?php endforeach; ?>
