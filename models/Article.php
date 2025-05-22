@@ -52,4 +52,14 @@ class Article {
         }
         return (int)$stmt->fetchColumn();
     }
+
+    public function getArticleById(int $id): ?array {
+        $sql = 'SELECT a.id, a.titre, a.contenu, a.image, a.dateCreation, c.libelle AS categorie 
+                FROM Article a 
+                JOIN Categorie c ON a.categorie = c.id 
+                WHERE a.id = :id';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch() ?: null;
+    }
 }

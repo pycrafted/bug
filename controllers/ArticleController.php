@@ -26,4 +26,21 @@ class ArticleController {
 
         require_once __DIR__ . '/../views/index.view.php';
     }
+
+    public function show() {
+        session_start();
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        if ($id === false || $id === null) {
+            http_response_code(400);
+            die('ID d\'article invalide');
+        }
+
+        $article = $this->articleModel->getArticleById($id);
+        if (!$article) {
+            http_response_code(404);
+            die('Article non trouvé');
+        }
+
+        require_once __DIR__ . '/../views/article.view.php';
+    }
 }

@@ -7,7 +7,7 @@ require_once __DIR__ . '/../utils/functions.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualités MGLSI</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/mglsi_news/css/style.css">
 </head>
 <body>
     <?php include __DIR__ . '/../includes/header.php'; ?>
@@ -17,11 +17,11 @@ require_once __DIR__ . '/../utils/functions.php';
             <section class="featured">
                 <h1>À la une</h1>
                 <div class="featured-article">
-                    <img src="../<?php echo safeHtml($featured['image']); ?>" alt="<?php echo safeHtml($featured['titre']); ?>">
+                    <img src="/mglsi_news/<?php echo safeHtml($featured['image']); ?>" alt="<?php echo safeHtml($featured['titre']); ?>">
                     <div class="featured-content">
                         <h2><?php echo safeHtml($featured['titre']); ?></h2>
                         <p><?php echo truncateText(safeHtml($featured['contenu']), 200); ?></p>
-                        <a href="../article.php?id=<?php echo $featured['id']; ?>" class="read-more">Lire l'article</a>
+                        <a href="/mglsi_news/article.php?id=<?php echo $featured['id']; ?>" class="read-more">Lire l'article</a>
                     </div>
                 </div>
             </section>
@@ -38,12 +38,12 @@ require_once __DIR__ . '/../utils/functions.php';
                 <?php if (!empty($articles)): ?>
                     <?php foreach ($articles as $article): ?>
                         <article class="article-card">
-                            <img src="../<?php echo safeHtml($article['image']); ?>" alt="<?php echo safeHtml($article['titre']); ?>">
+                            <img src="/mglsi_news/<?php echo safeHtml($article['image']); ?>" alt="<?php echo safeHtml($article['titre']); ?>">
                             <div class="article-content">
                                 <h3><?php echo safeHtml($article['titre']); ?></h3>
                                 <p class="category"><?php echo safeHtml($article['categorie']); ?></p>
                                 <p><?php echo truncateText(safeHtml($article['contenu']), 100); ?></p>
-                                <a href="../article.php?id=<?php echo $article['id']; ?>" class="read-more">Lire la suite</a>
+                                <a href="/mglsi_news/article.php?id=<?php echo $article['id']; ?>" class="read-more">Lire la suite</a>
                             </div>
                         </article>
                     <?php endforeach; ?>
@@ -66,17 +66,17 @@ require_once __DIR__ . '/../utils/functions.php';
                 <h3>Publicités</h3>
                 <div class="ad">
                     <a href="https://example.com" target="_blank">
-                        <img src="../images/pub1.jpg" alt="Publicité verticale">
+                        <img src="/mglsi_news/images/pub1.jpg" alt="Publicité verticale">
                     </a>
                 </div>
                 <div class="ad">
                     <a href="https://example.com" target="_blank">
-                        <img src="../images/pub2.jpg" alt="Publicité carrée">
+                        <img src="/mglsi_news/images/pub2.jpg" alt="Publicité carrée">
                     </a>
                 </div>
                 <div class="ad">
                     <a href="https://example.com" target="_blank">
-                        <img src="../images/pub3.jpg" alt="Publicité rond">
+                        <img src="/mglsi_news/images/pub3.jpg" alt="Publicité rond">
                     </a>
                 </div>
             </aside>
